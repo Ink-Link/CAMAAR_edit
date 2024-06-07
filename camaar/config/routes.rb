@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'home/login'
   get 'home/reset-password'
+  get 'home/management'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
