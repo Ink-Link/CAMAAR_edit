@@ -1,2 +1,3 @@
 .idea
-/camaar/tmp/cache/bootsnap/
+/camaar/tmp
+/camaar/log
