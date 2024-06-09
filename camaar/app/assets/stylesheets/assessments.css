@@ -1,4 +1,4 @@
-.assessment-container {
+.assessments-container {
     display: flex;
     flex: 1;
     flex-flow: row wrap;
@@ -6,7 +6,7 @@
     align-content: start;
 }
 
-.assessment-box {
+.assessments-box {
     display: flex;
     width: 278px;
     height: 128px;
