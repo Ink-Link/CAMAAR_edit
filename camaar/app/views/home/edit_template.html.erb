@@ -1,0 +1,77 @@
+<%= stylesheet_link_tag "base" %>
+<%= stylesheet_link_tag "templates" %>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+
+<body>
+<div class="header-bar">
+  <div class="left-frame">
+    <button class="menu-button">&#9776;</button>
+    <span class="header-text">Gerenciamento - Templates</span>
+  </div>
+  <div class="search-bar">
+    <input type="text">
+    <button class="search-icon">&#128269;</button>
+  </div>
+  <button class="user-button">U</button>
+</div>
+
+<div class="content-frame">
+  <div class="editor-box">
+    <div class="template-name-box">
+      <label for="template-name">Nome do template:
+        <input class="input" type="text" >
+      </label>
+    </div>
+
+    <div class="question-box">
+      <label class="question-label" for="question-name">
+        Questão 1
+      </label>
+      <form class="question-type">
+        <label>Tipo:
+          <select class="question-type-selector" name="question-type">
+            <option value="radio">Radio</option>
+            <option value="text">Texto</option>
+          </select>
+        </label>
+      </form>
+      <form class="question-statement">
+        <label>Texto:
+          <input class="input" type="text">
+        </label>
+      </form>
+      <div class="question-options">
+        <label>Opções:
+          <input class="input" type="text">
+        </label>
+        <button class="add-option-button">+</button>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <label class="question-label" for="question-name">
+        Questão 1
+      </label>
+      <form class="question-type">
+        <label>Tipo:
+          <select class="question-type-selector" name="question-type">
+            <option value="radio">Texto</option>
+            <option value="text">Radio</option>
+          </select>
+        </label>
+      </form>
+      <form class="question-statement">
+        <label>Texto:
+          <input class="input" type="text">
+        </label>
+      </form>
+    </div>
+
+    <button class="add-question-button">+</button>
+
+    <button class="create-template-button">Criar</button>
+  </div>
+
+</div>
+</body>

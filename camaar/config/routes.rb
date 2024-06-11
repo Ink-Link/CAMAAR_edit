@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home/assessments'
   get 'home/assessment-id'
   get 'home/templates'
+  get 'home/edit-template'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
