@@ -1,0 +1,64 @@
+<%= stylesheet_link_tag "base" %>
+<%= stylesheet_link_tag "send_template" %>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+
+<body>
+
+  <div class="header-bar">
+    <div class="left-frame">
+      <button class="menu-button">&#9776;</button>
+      <span class="header-text">Gerenciamento - Templates</span>
+    </div>
+    <div class="search-bar">
+      <input type="text">
+      <button class="search-icon">&#128269;</button>
+    </div>
+    <button class="user-button">U</button>
+  </div>
+
+  <div class="content-frame">
+    <div class="editor-box">
+      <form class="template-selector-form">
+        <label>Template:
+          <select class="template-selector" name="template">
+            <option value="template">Template</option>
+            <option value="template">Template</option>
+          </select>
+        </label>
+      </form>
+
+      <table>
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>Semestre</th>
+          <th>Código</th>
+        </tr>
+
+        <tr>
+          <td>
+            <form><input type="checkbox" name="checked"></form>
+          </td>
+          <td>Estudos Em</td>
+          <td>2024.1</td>
+          <td>CIC1024</td>
+        </tr>
+
+        <tr>
+          <td>
+            <form><input type="checkbox" name="checked"></form>
+          </td>
+          <td>Estudos Em</td>
+          <td>2024.1</td>
+          <td>CIC1024</td>
+        </tr>
+
+      </table>
+
+      <button class="send-template-button">Enviar</button>
+
+    </div>
+  </div>
+
+</body>
