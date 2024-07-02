@@ -5,18 +5,16 @@
       <%= "Criar Novo Template" %>
     </div>
     <div class='criar-template'>
-      <%= form_with model: @template, local: true do |template_form| %>
+      <%= form_with model: @template, method: :post, local: true do |template_form| %>
         <%= template_form.label :nome, "Nome do Template:" %>
         <%= template_form.text_field :nome %>
 
         <h2>Adicionar Questões</h2>
         <div class='criar-questao'>
-          <fieldset>
-            <%= template_form.fields_for :questaos do |questao_form| %>
-              <%= render "questao_fields", f: questao_form %>
-            <% end %>
-          </fieldset>
-          <%= link_to_add_fields "Adicionar Questões", template_form, :questaos%>
+          <%= template_form.fields_for :questaos do |questao_form| %>
+            <%= render "questao_fields", f: questao_form %>
+          <% end %>
+          <%= link_to_add_fields("Adicionar Questão", template_form, :questaos, class:'add_fields') %>
         </div>
         <%= template_form.submit "Criar Template", class: 'btn btn-success' %>
       <% end %>

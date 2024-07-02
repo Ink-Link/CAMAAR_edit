@@ -50,12 +50,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_210943) do
     t.string "respondentes"
     t.integer "docente_id", null: false
     t.integer "template_id", null: false
-    t.integer "turma_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["docente_id"], name: "index_formularios_on_docente_id"
     t.index ["template_id"], name: "index_formularios_on_template_id"
-    t.index ["turma_id"], name: "index_formularios_on_turma_id"
   end
 
   create_table "formularios_turmas", force: :cascade do |t|
@@ -156,7 +154,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_210943) do
   add_foreign_key "docentes", "users"
   add_foreign_key "formularios", "docentes"
   add_foreign_key "formularios", "templates"
-  add_foreign_key "formularios", "turmas"
   add_foreign_key "formularios_turmas", "formularios"
   add_foreign_key "formularios_turmas", "turmas"
   add_foreign_key "questaos", "templates"

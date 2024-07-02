@@ -19,6 +19,10 @@ class TemplatesController < ApplicationController
 
   # GET /templates/1/edit
   def edit
+    @template.questaos.build if @template.questaos.empty?
+    @template.questaos.each do |questao|
+      questao.alternativas.build if questao.alternativas.empty?
+    end
   end
 
   # POST /templates
@@ -55,6 +59,12 @@ class TemplatesController < ApplicationController
     end
 
     def template_params
-      params.require(:template).permit(:nome, questaos_attributes: [:id, :pergunta, :_destroy, alternativas_attributes: [:id, :texto, :_destroy]])
+      params.require(:template).permit(
+      :nome,
+      questaos_attributes: [
+        :id, :pergunta, :tipo_id, :_destroy,
+        alternativas_attributes: [:id, :texto, :_destroy]
+        ]
+      )
     end
 end

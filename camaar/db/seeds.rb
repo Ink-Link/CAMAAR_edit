@@ -101,9 +101,8 @@ end
     )
 
   provasDerivadas = Formulario.find_or_create_by(
-    nome: 'Prova de Derivadas',
+    nome: 'Pesquisa de Opinião',
     docente_id: Docente.find_by(user_id: User.find_by(nome: "administrador")).id,
-    turma_id: turma1.id,
     template_id: template1.id,
     dataDeTermino: Date.new(2024, 12, 1),
     respondentes: "aluno, "

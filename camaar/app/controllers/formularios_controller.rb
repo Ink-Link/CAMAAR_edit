@@ -1,4 +1,6 @@
 class FormulariosController < ApplicationController
+  before_action :set_formulario, only: [:show, :edit, :update, :destroy]
+  before_action :set_turmas_and_templates, only: [:new, :create]
   # GET /formularios
   def index
     @formularios = Formulario.all
@@ -6,7 +8,6 @@ class FormulariosController < ApplicationController
 
   # GET /formularios/1
   def show
-    @formulario = Formulario.find(params[:id])
   end
 
   def responder
@@ -17,12 +18,10 @@ class FormulariosController < ApplicationController
   # GET /formularios/new
   def new
     @formulario = Formulario.new
-    @templates = Template.all
   end
 
   # GET /formularios/1/edit
   def edit
-    @formulario = Formulario.find(params[:id])
   end
 
   # POST /formularios
@@ -40,7 +39,6 @@ class FormulariosController < ApplicationController
 
   # PATCH/PUT /formularios/1
   def update
-    @formulario = Formulario.find(params[:id])
     if @formulario.update(formulario_params)
       redirect_to @formulario, notice: 'Formulário foi atualizado com sucesso.'
     else
@@ -51,15 +49,24 @@ class FormulariosController < ApplicationController
 
   # DELETE /formularios/1
   def destroy
-    @formulario = Formulario.find(params[:id])
     @formulario.destroy
     redirect_to formularios_url, notice: 'Formulário foi excluído com sucesso.'
   end
 
   private
-    # Only allow a list of trusted parameters through.
+    def set_formulario
+      @formulario = Formulario.find(params[:id])
+    end
+
     def formulario_params
-      params.require(:formulario).permit(:dataDeTermino, :nome, :respondentes, :template_id)
+      params.require(:formulario).permit(:nome, :docente_id, :template_id, :dataDeTermino, :respondentes, turma_ids: [])
+    end
+
+    def set_turmas_and_templates
+      @docente = current_user.docente
+      @formulario.docente = @docente
+      @turmas = @docente.turmas
+      @templates = @docente.templates
     end
 
     def criar_resultados_formulario(formulario)

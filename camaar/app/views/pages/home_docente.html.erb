@@ -28,30 +28,29 @@
   </div>
   <div class="content-frame">
     <div class="templates-container" id="templatesContainer">
-      <div class="templates-box">
-        <% if @templates.any? %>
-          <% @templates.each do |template| %>
-            <div class="templates-textbox">
-              <div class="templates-name"><%= template.nome.capitalize %></div>
-             <div class="semester"><%= FormulariosTurma.find_by(formulario: Formulario.find_by(template: template)).turma.semestre %></div>
-              <div class="professor"><%= template.docente.user.nome %></div> 
-            </div>
+      <% if @templates.any? %>
+        <% @templates.each do |template| %>
+          <div class="templates">
+            <div class="templates-name"><%= template.nome.capitalize %></div>
+            <% formulario = FormulariosTurma.find_by(formulario: Formulario.find_by(template: template)) %>
+            <% if formulario.present? %>
+              <div class="semester"><%= formulario.turma.codigo + ": " + formulario.turma.horario %></div>
+            <% else %>
+              <div class="semester">Não aplicado</div>
+            <% end %>
+            <div class="professor"><%= template.docente.user.nome %></div>
             <div class="templates-buttonbox">
-              <div>
-                <%= link_to "", edit_template_path(template), class:"edit-button" %>
-              </div>
-              <div>
-                <%= link_to "", template_path(template), method: :delete, data: { confirm: 'Tem certeza?' }, class:"trash-button" %>
-              </div>
+              <%= link_to "", edit_template_path(template), method: :patch, class: "edit-button" %>
+              <%= link_to "", home_docente_path, method: :delete, class: "trash-button" %>
             </div>
-          <% end %>
-        <% else %>
-          <p>Nenhum template encontrado.</p>
+          </div>
         <% end %>
-      </div>
-      <div class="add-templates-box">
-       <%= link_to '', new_template_path, class: 'add-button'%>
-      </div>
+        <div class="add-templates-box">
+          <%= link_to '', new_template_path, class: 'add-button' %>
+        </div>
+      <% else %>
+        <p>Nenhum template encontrado.</p>
+      <% end %>
     </div>
 
     <div class="management-contents" id="managementContents"  style="display: none;">
@@ -105,23 +104,21 @@
           <table>
             <tr>
               <th style="width: 10%; padding: 5px;"></th>
-              <th style="width: 22,5%; padding: 10px;">Disciplina</th>
-              <th style="width: 22,5%; padding: 10px;">Data de Término</th>
-              <th style="width: 22,5%; padding: 10px;">Semestre</th>
-              <th style="width: 22,5%; padding: 10px;">Class Code</th>
+              <th style="width: 22.5%; padding: 10px;">Disciplina</th>
+              <th style="width: 22.5%; padding: 10px;">Data de Término</th>
+              <th style="width: 22.5%; padding: 10px;">Semestre</th>
+              <th style="width: 22.5%; padding: 10px;">Class Code</th>
             </tr>
-
             <% @turmas.each do |turma| %>
               <tr>
-                <td><%= check_box_tag "formularios[turma_ids][]", turma.id %></td>
-                <td><%= turma.codigo %></td>
-                <td><%= f.date_field :data_termino %></td>
+                <td><%= check_box_tag "formulario[turma_ids][]", turma.id %></td>
+                <td><%= turma.disciplina.codigo %></td>
+                <td><%= f.date_field :dataDeTermino %></td>
                 <td><%= turma.semestre %></td>
                 <td><%= turma.class_code %></td>
               </tr>
             <% end %>
           </table>
-
           <%= f.submit "Criar", class: "send-template-button" %>
         <% end %>
       </div>
