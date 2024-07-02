@@ -5,31 +5,31 @@
     justify-content: flex-start;
     align-content: start;
 }
-.templates-box {
+.templates-box{
+    align-content: center;
+}
+.templates {
     display: flex;
-    width: 278px;
-    height: 128px;
+    width: 280px;
+    height: 140px;
     border-radius: 8px;
     margin: 25px 25px;
     background-color: #FFFFFF;
     color: #000000;
     cursor: pointer;
     flex-direction: row;
+    flex-direction: column;
 }
 
 .add-templates-box {
     display: flex;
-    width: 278px;
-    height: 128px;
+    width: 280px;
+    height: 140px;
     border-radius: 8px;
     margin: 25px 25px;
     background-color: #FFFFFF;
     color: #000000;
     cursor: pointer;
-}
-
-.templates-textbox {
-    flex-direction: column;
 }
 
 .templates-name , .professor {

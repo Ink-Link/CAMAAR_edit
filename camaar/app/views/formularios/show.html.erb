@@ -1,30 +1,40 @@
-<h1>Resultados do Formulário <%= @formulario.nome %></h1>
+<%= stylesheet_link_tag "edit" %>
+<body>
+  <div class='edit-container'>
+    <% @template = @formulario.template %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Dicente</th>
-      <th>Classe</th>
-      <th>Nota</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% total_notas = 0 %>
-    <% @resultados.each do |resultado| %>
-      <% total_notas += resultado.nota %>
-      <tr>
-        <td><%= resultado.dicente.nome %></td>
-        <td><%= resultado.classe.materia %></td>
-        <td><%= resultado.nota %></td>
-      </tr>
-    <% end %>
-
-    <% if @resultados.present? %>
-      <tr>
-        <td colspan="2"><strong>Média das Notas:</strong></td>
-        <td><%= (total_notas / @resultados.size) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class='titulo'>
+      <%= "Resultados do Formulário: " +  @formulario.nome %>
+      <br>
+      <%= "Template: " +  @template.nome %>
+    </div>
+  
+    <div class='questaos-container'>
+      <% @template.questaos.each do |questao| %>
+        <h2><%= questao.pergunta %></h2>
+        <% if questao.tipo.discursiva %>
+          <ul>
+            <% questao.alternativas.each do |alternativa| %>
+              <% @resultado = Resultado.find_by(formulario: @formulario, template: @template, questao: questao, alternativa: alternativa) %>
+              <li><%= alternativa.texto + " - Resultados: " + @resultado.respostas.to_s + " votos" %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <div>
+            <% @resultado_discursivo = Resultado.find_by(formulario: @formulario, template: @template, questao: questao) %>
+            <% if @resultado_discursivo.present? %>
+              <% resultado_discursivo.respostas_discursivas.split("#").each do |discursiva| %>
+                <div>
+                  <%= discursiva %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class='buttons'>
+      <%= link_to 'Voltar para Home Docente', home_docente_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</body>
