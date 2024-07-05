@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
-
+  after_create :send_set_password_instructions
   enum role: {dicente: 0, docente: 1}
 
   has_one :docente
