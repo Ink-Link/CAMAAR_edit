@@ -1,1 +1,4 @@
-.idea
+*
+
+!camaar/app/models/user.rb
+!camaar/app/views/devise/passwords/edit.html.erb
